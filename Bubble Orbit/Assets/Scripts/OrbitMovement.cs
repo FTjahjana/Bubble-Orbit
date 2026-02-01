@@ -1,44 +1,48 @@
 using UnityEngine;
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
 public class OrbitMovement : MonoBehaviour
 {
-    public GameObject sun;
     public Transform globalAxis;   
 
     [Header("Input Actions")]
     public PlayerInput playerInput;
-    public InputAction horizontalMoveAction;   // WASD
-    public InputAction verticalMoveAction;     // QE
+    public InputAction moveAction;   // WASD + QE
     private List<InputAction> actions = new List<InputAction>();
 
-    [Header("Movement Speeds")]
+    [Header("Movement Speeds - Automatic")]
+    public float localOrbitSpeed = 20f; // deg/sec
+    public float globalOrbitSpeed = 33f; // units/sec
+
+    [Header("Movement Speeds - Controlled")]
     public float AD_moveSpeed = 20f;   // deg/sec
     public float WS_moveSpeed = 5f;    // units/sec
     public float QE_moveSpeed = 20f;   // deg/sec
 
     [Header("Limits")]
-    public Vector2 distFromSunLimits = new Vector2(5f, 25f);
-    [Tooltip("(Degrees)")]
+    private Vector2 distFromTowerLimits;
     public Vector2 verticalAngleLimits = new Vector2(-45f, 45f);
 
     [Header("Look")]
-    public float lookSpeed = 10f; // deg/sec
+    public float spinSpeed = 10f; // deg/sec
 
     [Header("Camera")]
     public GameObject playerCamera;
 
-    private float distFromSun;
-    private float lookInput; 
+    private float distFromTower;
+    private float spinInput; 
 
     void Awake()
     {
-        horizontalMoveAction = playerInput.actions.FindAction("Move");
-        verticalMoveAction = playerInput.actions.FindAction("VerticalMove");
+        moveAction = playerInput.actions.FindAction("Move");
 
-        actions.Add(horizontalMoveAction);
-        actions.Add(verticalMoveAction);
+        actions.Add(moveAction);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -56,72 +60,81 @@ public class OrbitMovement : MonoBehaviour
 
     void Start()
     {
+        GameObject tower = GameManager.Instance.Tower;
+        if (tower == null)
+        {
+            Debug.LogError("Tower componnet is missing.");
+            return;
+        }
+
         globalAxis = transform.parent;
 
-        globalAxis.position = sun.transform.position;
+        globalAxis.position = tower.transform.position;
         globalAxis.rotation = Quaternion.identity;
 
-        distFromSun = Vector3.Distance(transform.position, sun.transform.position);
-        distFromSun = Mathf.Clamp(distFromSun, distFromSunLimits.x, distFromSunLimits.y);
+        distFromTowerLimits = tower.GetComponent<Tower>().innerAndOuterBoundary;
+
+        distFromTower = Vector3.Distance(transform.position, tower.transform.position);
+        distFromTower = Mathf.Clamp(distFromTower, distFromTowerLimits.x, distFromTowerLimits.y);
     }
 
     void Update()
     {
-        Move();
-        Look();
+        AutoRotation();
+
+        ControlledOrbit();
+        ControlledSpin();
     }
 
-    // ---------------- MOVEMENT ----------------
-
-    void Move()
+    // ---------------- ROTATION : ORBIT & SPIN ----------------
+    void AutoRotation()
     {
-        Vector2 moveInput = horizontalMoveAction.ReadValue<Vector2>();
-        float verticalInput = verticalMoveAction.ReadValue<float>();
+        globalAxis.Rotate(Vector3.up, globalOrbitSpeed * Time.deltaTime, Space.World);
+        transform.Rotate(Vector3.up, localOrbitSpeed * Time.deltaTime, Space.Self);
+    }
 
-        // A / D 
+    void ControlledOrbit()
+    {
+        Vector3 moveInput = moveAction.ReadValue<Vector3>();
+
+        // A / D  (X)
         if (moveInput.x != 0f)
         {
             globalAxis.Rotate(Vector3.up, moveInput.x * AD_moveSpeed * Time.deltaTime, Space.World);
         }
 
-        // Q / E 
-        if (verticalInput != 0f)
+        // Q / E  (Y)
+        if (moveInput.y != 0f)
         {
             Vector3 angles = globalAxis.localEulerAngles;
             float x = angles.x > 180f ? angles.x - 360f : angles.x;
 
-            x += verticalInput * QE_moveSpeed * Time.deltaTime;
+            x += moveInput.y * QE_moveSpeed * Time.deltaTime;
             x = Mathf.Clamp(x, verticalAngleLimits.x, verticalAngleLimits.y);
 
             globalAxis.localRotation = Quaternion.Euler(x, angles.y, 0f);
         }
 
-        // W / S 
-        if (moveInput.y != 0f)
+        // W / S  (Z)
+        if (moveInput.z != 0f)
         {
-            distFromSun -= moveInput.y * WS_moveSpeed * Time.deltaTime;
-            distFromSun = Mathf.Clamp(distFromSun, distFromSunLimits.x, distFromSunLimits.y);
-            transform.localPosition = Vector3.forward * distFromSun;
+            distFromTower -= moveInput.z * WS_moveSpeed * Time.deltaTime;
+            distFromTower = Mathf.Clamp(distFromTower, distFromTowerLimits.x, distFromTowerLimits.y);
+            transform.localPosition = Vector3.forward * distFromTower;
         }
     }
 
-    // ---------------- LOOK (USE UI BUTTONS) ----------------
-
-    void Look()
+    void ControlledSpin()
     {
-        if (lookInput == 0f) return;
-
-        transform.Rotate(Vector3.up, lookInput * lookSpeed * Time.deltaTime, Space.Self);
+        if (spinInput != 0f)
+        {
+            transform.Rotate(Vector3.up, spinInput * spinSpeed * Time.deltaTime, Space.Self);
+        }
     }
 
-    public void Look(float value)
+    public void ControlledSpin(float value)
     {
-        lookInput = Mathf.Clamp(value, -1f, 1f);
-    }
-
-    public void LookRelease()
-    {
-        lookInput = 0f;
+        spinInput = Mathf.Clamp(value, -1f, 1f);
     }
 
     // ---------------- ACTIONSTOG ----------------
@@ -145,14 +158,28 @@ public class OrbitMovement : MonoBehaviour
 
     // ---------------- GIZMOS ----------------
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
-        if (!sun) return;
+        #if UNITY_EDITOR
+        if (!globalAxis) return;
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(sun.transform.position, distFromSunLimits.x);
+        Gizmos.color = Color.yellow; Handles.color = Color.yellow;
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(sun.transform.position, distFromSunLimits.y);
+        /*
+        float radius = 2f;
+        Vector3 pos = transform.position;
+
+        // flat circle
+        Handles.DrawWireDisc(pos, Vector3.up, radius);
+
+        // curved sides (hemisphere)
+        Handles.DrawWireArc(pos, Vector3.right, Vector3.forward, 180f, radius);
+        Handles.DrawWireArc(pos, Vector3.forward, Vector3.right, 180f, radius);
+        */
+
+
+        Gizmos.DrawWireSphere(globalAxis.transform.position, distFromTowerLimits.x);
+        Gizmos.DrawWireSphere(globalAxis.transform.position, distFromTowerLimits.y);
+        #endif
     }
 }
