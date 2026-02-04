@@ -9,7 +9,7 @@ public class InteractRaycast : MonoBehaviour
     InputAction interactAction;
     InputAction debugAction;
 
-    public float interactRange = 20;
+    public float interactRange = 7.5f;
 
     bool raydebugLogOn = false;
 

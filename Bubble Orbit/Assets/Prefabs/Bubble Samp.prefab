@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 369809365660400605}
+  - component: {fileID: 8487211687110449400}
   - component: {fileID: 261184556622636155}
   - component: {fileID: 7347700348966882296}
   - component: {fileID: 6630325785561038187}
   - component: {fileID: 7931321368295723122}
-  - component: {fileID: 8487211687110449400}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bubble Samp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,6 +36,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8487211687110449400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465557227988005056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73a7cd721f8971f49ad23586cffc1074, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatForce: 0.5
+  wanderForce: 0.3
+  lifetime: 20
 --- !u!33 &261184556622636155
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -137,18 +152,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &8487211687110449400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1465557227988005056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73a7cd721f8971f49ad23586cffc1074, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  floatForce: 0.5
-  wanderForce: 0.3
-  lifetime: 8

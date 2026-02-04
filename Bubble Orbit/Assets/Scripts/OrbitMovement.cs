@@ -50,12 +50,12 @@ public class OrbitMovement : MonoBehaviour
 
     void OnEnable()
     {
-        ActionsTog(true, null, "all");
+        ActionsTog(true);
     }
 
     void OnDisable()
     {
-        ActionsTog(false, null, "all");
+        ActionsTog(false);
     }
 
     void Start()
@@ -107,10 +107,10 @@ public class OrbitMovement : MonoBehaviour
         if (moveInput.y != 0f)
         {
             Vector3 angles = globalAxis.localEulerAngles;
-            float x = angles.x > 180f ? angles.x - 360f : angles.x;
+            float x = angles.x > 180f ? angles.x - 360f : angles.x; 
 
             x += moveInput.y * QE_moveSpeed * Time.deltaTime;
-            x = Mathf.Clamp(x, verticalAngleLimits.x, verticalAngleLimits.y);
+            x = Mathf.Clamp(x, verticalAngleLimits.x, verticalAngleLimits.y); 
 
             globalAxis.localRotation = Quaternion.Euler(x, angles.y, 0f);
         }
@@ -139,9 +139,14 @@ public class OrbitMovement : MonoBehaviour
 
     // ---------------- ACTIONSTOG ----------------
 
-    public void ActionsTog(bool state, InputAction action = null, string AN = null)
+    public void ActionsTog(bool state, InputAction action = null)
     {
-        if (AN == "all")
+        if (action != null)
+        {
+            if (state) action.Enable();
+            else action.Disable();
+        }
+        else
         {
             foreach (InputAction a in actions)
             {
@@ -149,37 +154,5 @@ public class OrbitMovement : MonoBehaviour
                 else a.Disable();
             }
         }
-        else if (action != null)
-        {
-            if (state) action.Enable();
-            else action.Disable();
-        }
-    }
-
-    // ---------------- GIZMOS ----------------
-
-    void OnDrawGizmos()
-    {
-        #if UNITY_EDITOR
-        if (!globalAxis) return;
-
-        Gizmos.color = Color.yellow; Handles.color = Color.yellow;
-
-        /*
-        float radius = 2f;
-        Vector3 pos = transform.position;
-
-        // flat circle
-        Handles.DrawWireDisc(pos, Vector3.up, radius);
-
-        // curved sides (hemisphere)
-        Handles.DrawWireArc(pos, Vector3.right, Vector3.forward, 180f, radius);
-        Handles.DrawWireArc(pos, Vector3.forward, Vector3.right, 180f, radius);
-        */
-
-
-        Gizmos.DrawWireSphere(globalAxis.transform.position, distFromTowerLimits.x);
-        Gizmos.DrawWireSphere(globalAxis.transform.position, distFromTowerLimits.y);
-        #endif
     }
 }

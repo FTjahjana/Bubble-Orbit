@@ -5,8 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public GameObject Player;
-    public GameObject Tower;
+    public GameObject Player, Tower, MainMenu;
 
     public bool inGame;
     
@@ -38,11 +37,18 @@ public class GameManager : MonoBehaviour
     
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+        
         if (scene.name == "Game")
         {
             Player = GameObject.FindGameObjectWithTag("Player");
             Tower = GameObject.FindGameObjectWithTag("Tower");
 
+        }
+
+        if (scene.name == "MainMenu")
+        {
+            
         }
     }
 
