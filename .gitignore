@@ -1,4 +1,9 @@
-/Bubble Orbit/Library
-/Bubble Orbit/Logs
-/Bubble Orbit/Temp
+/Bubble Orbit - Desktop/Library
+/Bubble Orbit - Desktop/Logs
+/Bubble Orbit - Desktop/Temp
+
+/Bubble Orbit - Mobile AR/Library
+/Bubble Orbit - Mobile AR/Logs
+/Bubble Orbit - Mobile AR/Temp
+
 *.log
