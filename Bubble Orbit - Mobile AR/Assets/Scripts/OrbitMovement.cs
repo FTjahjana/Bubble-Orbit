@@ -82,8 +82,10 @@ public class OrbitMovement : MonoBehaviour
     {
         AutoRotation();
 
+    #if UNITY_EDITOR || UNITY_STANDALONE //alternative: UNITY_ANDROID
         ControlledOrbit();
         ControlledSpin();
+    #endif
     }
 
     // ---------------- ROTATION : ORBIT & SPIN ----------------

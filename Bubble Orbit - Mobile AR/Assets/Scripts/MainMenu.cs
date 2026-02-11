@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
@@ -32,11 +31,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if (SceneManager.GetActiveScene().name != "Game")
-        {
-            SceneManager.LoadScene("Game");
-            GameManager.Instance.inGame = true;
-        }
+        if (!inGame) {GameManager.Instance.inGame = true;}
     }
 
     public void Resume()

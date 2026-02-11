@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1440
     height: 810
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -73,7 +73,7 @@ MonoBehaviour:
     height: 36
   m_MinSize: {x: 0, y: 0}
   m_MaxSize: {x: 0, y: 0}
-  m_LastLoadedLayoutName: My Usual Layout
+  m_LastLoadedLayoutName: 
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 403
+  controlID: 52
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 404
+  controlID: 53
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 405
+  controlID: 54
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 406
+  controlID: 55
   draggingID: 0
 --- !u!114 &9
 MonoBehaviour:
@@ -243,8 +243,8 @@ MonoBehaviour:
     y: 0
     width: 886
     height: 473
-  m_MinSize: {x: 202, y: 226}
-  m_MaxSize: {x: 4002, y: 4026}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -305,7 +305,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 462
+  controlID: 111
   draggingID: 0
 --- !u!114 &13
 MonoBehaviour:
@@ -326,8 +326,8 @@ MonoBehaviour:
     y: 0
     width: 292.5
     height: 503
-  m_MinSize: {x: 276, y: 76}
-  m_MaxSize: {x: 4001, y: 4026}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -502,7 +502,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 1c12ffff5cc7ffff82efffff16f8ffff2cf8ffff42f8ffff24f9ffff36f9ffff38f9ffffb8faffff1efbffff20fbffffb091000060a8000064a800007aa8000084a80000aaa80000cca80000cea8000086aa0000ceaa0000d6aa000002ab000020ab00006eab0000
+      m_ExpandedIDs: 1efbffffc4ad0000d2ad0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1088,9 +1088,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_Size:
-    m_Target: 0.120616436
+    m_Target: 0.094462834
     speed: 2
-    m_Value: 0.11542243
+    m_Value: 0.094462834
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1635,7 +1635,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 877.6615, y: 531.0397, z: 4.675741}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: {x: 877.6615, y: 531.0397, z: 4.675741}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1687,7 +1687,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 633.8795
     speed: 2
-    m_Value: 0.8660254
+    m_Value: 633.8795
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1841,7 +1841,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs: 30ab0000
     m_LastClickedID: 43824
-    m_ExpandedIDs: 00000000e418010000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000034ae0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1870,7 +1870,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e418010000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000034ae0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1975,7 +1975,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/3D models
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1985,7 +1985,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/3D models
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\franc\OneDrive\Uni Work\Yr2 (2026)\Bubble-Orbit\Bubble
     Orbit - Mobile AR
@@ -1993,9 +1993,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ea180100
-    m_LastClickedID: 71914
-    m_ExpandedIDs: 00000000e418010000ca9a3bffffff7f
+    m_SelectedIDs: d0b10000
+    m_LastClickedID: 45520
+    m_ExpandedIDs: 0000000034ae000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2024,7 +2024,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000e418010000ca9a3bffffff7f
+    m_ExpandedIDs: 0000000034ae0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: e4aa000080020000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -2120,7 +2120,7 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 43214
+  m_LastSelectedObjectID: 44478
 --- !u!114 &23
 MonoBehaviour:
   m_ObjectHideFlags: 52

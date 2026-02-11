@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -46,10 +48,28 @@ public class GameManager : MonoBehaviour
 
         }
 
-        if (scene.name == "MainMenu")
-        {
-            
-        }
     }
 
+    //Maybe move the onsceneloaded stuff here if it works like that?? i dunno
+    /*
+    public void ThingThatDetectsARINstantiatedPrefabMarkerThing()
+    {
+        MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+
+            Player = GameObject.FindGameObjectWithTag("Player");
+            Tower = GameObject.FindGameObjectWithTag("Tower");
+
+    }
+    */
+
+}
+
+public class ThingThatDetectsARINstantiatedPrefabMarkerThing
+{
+    public UnityEvent theEvent;
+
+    public void FireEvent()
+    {
+        theEvent?.Invoke();
+    }
 }
