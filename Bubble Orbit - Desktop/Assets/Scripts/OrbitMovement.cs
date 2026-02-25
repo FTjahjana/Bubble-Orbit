@@ -80,6 +80,8 @@ public class OrbitMovement : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.inGame != true) return;
+        
         AutoRotation();
 
         ControlledOrbit();

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player, Tower, MainMenu;
 
-    public bool inGame;
+    public bool inGame = false;
     
 
     void Awake()
@@ -21,35 +20,24 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        Debug.Log("Game started!");
+        Debug.Log("Main Menu");
     }
 
-    void OnEnable()
-    { SceneManager.sceneLoaded += OnSceneLoaded; }
+    void Start()
+    {
+        MainMenu.SetActive(true);
+    }
 
-    void OnDisable()
-    { SceneManager.sceneLoaded -= OnSceneLoaded; }
+    public void StartGame()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        Tower = GameObject.FindGameObjectWithTag("Tower");
+    }
 
     public void EndGame()
     {
         Debug.Log("Game ended!");
     }
-    
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-        
-        if (scene.name == "Game")
-        {
-            Player = GameObject.FindGameObjectWithTag("Player");
-            Tower = GameObject.FindGameObjectWithTag("Tower");
 
-        }
-
-        if (scene.name == "MainMenu")
-        {
-            
-        }
-    }
 
 }

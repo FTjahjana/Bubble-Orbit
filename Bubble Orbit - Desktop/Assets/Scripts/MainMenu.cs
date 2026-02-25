@@ -19,8 +19,15 @@ public class MainMenu : MonoBehaviour
         if (inGame) orbitMovement.ActionsTog(false);
     }
 
-    void OnEnable() {if (inGame) orbitMovement.ActionsTog(false);}
-    void OnDisable() {if (inGame) orbitMovement.ActionsTog(true);}
+    void OnEnable() {
+        if (inGame) orbitMovement.ActionsTog(false);
+        }
+
+    void OnDisable() {
+        if (inGame) orbitMovement.ActionsTog(true);
+        
+        
+        }
 
     public void ShowPage(int PageIndex)
     {
@@ -32,11 +39,11 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if (SceneManager.GetActiveScene().name != "Game")
-        {
-            SceneManager.LoadScene("Game");
-            GameManager.Instance.inGame = true;
-        }
+        GameManager.Instance.inGame = true;
+        
+        Camera cam = Camera.main; 
+        cam.clearFlags = CameraClearFlags.Skybox;
+        gameObject.SetActive(false);
     }
 
     public void Resume()

@@ -32,8 +32,4 @@ public class camicon : MonoBehaviour
 
     }
 
-    public void Clicked_PostAnim()
-    {
-        GameManager.Instance.MainMenu.GetComponent<MainMenu>().Play();
-    }
 }

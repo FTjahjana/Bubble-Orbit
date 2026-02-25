@@ -13,6 +13,11 @@ public class Tower : MonoBehaviour
     public float lowerBoundary_r, lowerBoundary_h;
     public Vector3 lowerBoundary_p;
 
+    void Awake()
+    {
+        GameManager.Instance.Tower = this.gameObject;
+    }
+
     void Start()
     {
         (lowerBoundary_r, lowerBoundary_h, lowerBoundary_p) = FindLowerCircle();

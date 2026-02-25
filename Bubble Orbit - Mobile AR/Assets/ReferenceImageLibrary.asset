@@ -16,4 +16,14 @@ MonoBehaviour:
   m_GuidHigh: 12703580128264839571
   m_DataStore:
     m_Storage: []
-  m_Images: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5680483773821543830
+      m_GuidHigh: 2541744329838890369
+    m_SerializedTextureGuid:
+      m_GuidLow: 16227627206185833331
+      m_GuidHigh: 11728341065516082216
+    m_Size: {x: 0, y: 0}
+    m_SpecifySize: 0
+    m_Name: placeholder-marker
+    m_Texture: {fileID: 0}

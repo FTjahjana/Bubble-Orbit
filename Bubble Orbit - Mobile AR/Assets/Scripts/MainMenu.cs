@@ -7,19 +7,38 @@ using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
+    [SerializeField] GameObject GamePlayCanvas;
     public GameObject[] pages;
-    public OrbitMovement orbitMovement;
+    //public OrbitMovement orbitMovement;
 
-    [HideInInspector]public bool inGame;
+    [HideInInspector]bool inGame;
+
+    public string chosenGameMode;
+
+    Animator anim; 
    
     void Start()
     {
         inGame = GameManager.Instance.inGame;
-        if (inGame) orbitMovement.ActionsTog(false);
+        if (inGame) gameObject.SetActive(false);
+        
+        anim = GetComponent<Animator>();
+    }
+    
+    public void ChooseGameMode(string chosen)
+    {
+        chosenGameMode = chosen;
     }
 
-    void OnEnable() {if (inGame) orbitMovement.ActionsTog(false);}
-    void OnDisable() {if (inGame) orbitMovement.ActionsTog(true);}
+    void OnEnable()
+    {
+        
+    }
+
+    void OnDisable()
+    {
+        
+    }
 
     public void ShowPage(int PageIndex)
     {
@@ -31,7 +50,12 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if (!inGame) {GameManager.Instance.inGame = true;}
+        if (!inGame) {
+            GameManager.Instance.SetGameMode(chosenGameMode);
+            GameManager.Instance.StartGame();
+            GamePlayCanvas.SetActive(true);
+            gameObject.SetActive(false);
+        }
     }
 
     public void Resume()

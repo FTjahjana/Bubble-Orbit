@@ -13,9 +13,7 @@ public class InteractRaycast : MonoBehaviour
 
     bool raydebugLogOn = false;
 
-    float logTimer = 0f;
-
-    float lastInteractTime = -1f;
+    float logTimer = 0f; float lastInteractTime = -1f;
     const float interactCooldown = 0.3f;
 
     public bool rayCastBlocked = false;
@@ -26,9 +24,10 @@ public class InteractRaycast : MonoBehaviour
         debugAction = playerInput.actions.FindAction("Debug");
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
+        if (!GameManager.Instance.inGame) return;
+
         //get forward vector
         Vector3 fwd = transform.TransformDirection(Vector3.forward);
         Ray interactRay = new Ray(transform.position, fwd);

@@ -14,16 +14,14 @@ public class BubbleSpawner : MonoBehaviour
     public int maxBubbles = 25;
 
     [Header("launching")]
-    public AnimationCurve launchCurve;
     public float launchForce = 5f,  pushDuration = 0.5f; 
-
 
     [SerializeField] List<GameObject> bubbles = new List<GameObject>();
     float timer;    int bubbleId = 0;
 
     void Start()
     {
-        GameObject tower = GameManager.Instance.Tower;
+        GameObject tower = transform.parent.gameObject;
         if (tower == null)
         {
             Debug.LogError("Tower componnet is missing.");
@@ -37,6 +35,8 @@ public class BubbleSpawner : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.inGame) return;
+        
         bubbles.RemoveAll(b => b == null);
 
         if (bubbles.Count >= maxBubbles) return;
@@ -51,7 +51,7 @@ public class BubbleSpawner : MonoBehaviour
     }
 
     void SpawnBubble()
-    {   GameObject b = Instantiate(bubblePrefab, transform.position, Random.rotation);
+    {   GameObject b = Instantiate(bubblePrefab, transform.position, Random.rotation, transform.parent.parent);
         bubbles.Add(b);
 
         b.name = "Bubble" + bubbleId; bubbleId++;
@@ -59,7 +59,7 @@ public class BubbleSpawner : MonoBehaviour
         Rigidbody rb = b.GetComponent<Rigidbody>();
 
         //target bubble position
-        float dist = Random.Range(towerBoundaries.x, towerBoundaries.y);
+        float dist = Random.Range(towerBoundaries.x + 3, towerBoundaries.y + 3);
         // H
         float yaw = Random.Range(0f, 360f);
         // V
@@ -68,21 +68,6 @@ public class BubbleSpawner : MonoBehaviour
         Vector3 bubPos = rot * Vector3.forward * dist;
 
         rb.AddForce(bubPos.normalized * launchForce, ForceMode.Impulse);
-        //StartCoroutine(LaunchBubble(rb, bubPos.normalized * launchForce));
     }
 
-    /*
-    IEnumerator LaunchBubble(Rigidbody rb, Vector3 initialForce)
-    {
-        float elapsedTimer = 0f;
-
-        while (elapsedTimer < pushDuration)
-        {
-            float curveMultiplier = launchCurve.Evaluate(elapsedTimer / pushDuration);
-            rb.AddForce(initialForce * curveMultiplier, ForceMode.Acceleration);
-
-            elapsedTimer += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-    }*/
 }

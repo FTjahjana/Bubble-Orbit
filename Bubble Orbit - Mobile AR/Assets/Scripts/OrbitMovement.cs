@@ -7,9 +7,10 @@ using UnityEditor;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 
+/*
 public class OrbitMovement : MonoBehaviour
 {
-    public Transform globalAxis;   
+    public Transform globalAxis;   private bool isAR;
 
     [Header("Input Actions")]
     public PlayerInput playerInput;
@@ -46,6 +47,9 @@ public class OrbitMovement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        isAR = GameManager.Instance.isAR;
+
     }
 
     void OnEnable()
@@ -80,12 +84,15 @@ public class OrbitMovement : MonoBehaviour
 
     void Update()
     {
+    
+    if (!GameManager.Instance.inGame) return;
         AutoRotation();
 
-    #if UNITY_EDITOR || UNITY_STANDALONE //alternative: UNITY_ANDROID
+    if (!isAR)
+    {
         ControlledOrbit();
         ControlledSpin();
-    #endif
+    }
     }
 
     // ---------------- ROTATION : ORBIT & SPIN ----------------
@@ -157,4 +164,4 @@ public class OrbitMovement : MonoBehaviour
             }
         }
     }
-}
+}*/
