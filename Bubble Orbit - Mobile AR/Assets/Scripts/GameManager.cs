@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
-        ManagePlatform();
+        //ManagePlatform();
         
     }
 
@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         }
         
         Player = GameObject.FindGameObjectWithTag("Player");
-        gameTimer = GetComponent<GameTimer>(); 
+        //gameTimer = GetComponent<GameTimer>(); 
     }
 
     public void StartGame()
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game ended!");
     }
 
+/*
     void ManagePlatform()
     {
         #if UNITY_ANDROID && !UNITY_EDITOR
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
             foreach (GameObject desktopElement in desktopElements){ desktopElement.SetActive(true);}
         #endif
     }
+*/
 
     #if UNITY_EDITOR
     void OnGUI()

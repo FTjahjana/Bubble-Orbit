@@ -1,0 +1,1 @@
+C:\Users\F.Tjahjana1\Documents\Bubble Orbit Mobile2\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\s572s171\obj\arm64-v8a
