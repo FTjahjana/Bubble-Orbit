@@ -50,6 +50,7 @@ public class GameTimer : MonoBehaviour
         timeLeft = 0f;
         UpdateUI();
         timerCoroutine = null;
+        GameManager.Instance.inGame = false;
     }
 
     private void UpdateUI()

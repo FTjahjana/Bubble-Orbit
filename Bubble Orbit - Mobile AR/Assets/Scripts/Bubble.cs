@@ -50,6 +50,7 @@ public class Bubble : MonoBehaviour, IInteractable
     public void Pop()
     {
         Debug.Log($"<color=red>{gameObject.name} Popped!</color>");
+        if (ScoreManager.Instance != null) ScoreManager.Instance.AddScore(1);
         Destroy(gameObject);
     }
 }

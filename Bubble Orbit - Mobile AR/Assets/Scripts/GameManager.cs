@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
             foreach (GameObject xrElement in xrElements){ xrElement.SetActive(true);}
             foreach (GameObject desktopElement in desktopElements){ desktopElement.SetActive(false);}
 
-            playerInput.actions = arActions;
+            //playerInput.actions = arActions;
             
         #endif
 
