@@ -5,24 +5,14 @@ using UnityEngine.InputSystem;
 
 public class InteractRaycast : MonoBehaviour
 {
-    public PlayerInput playerInput;
-    InputAction interactAction;
-    InputAction debugAction;
-
     public float interactRange = 7.5f;
 
-    bool raydebugLogOn = false;
+    [SerializeField]bool raydebugLogOn = false;
 
     float logTimer = 0f; float lastInteractTime = -1f;
     const float interactCooldown = 0.3f;
 
     public bool rayCastBlocked = false;
-
-    private void Awake()
-    {
-        interactAction = playerInput.actions.FindAction("Interact");
-        debugAction = playerInput.actions.FindAction("Debug");
-    }
 
     void FixedUpdate()
     {
@@ -41,12 +31,12 @@ public class InteractRaycast : MonoBehaviour
             if (hitData.collider.gameObject.layer == 6)
             {
                 if (raydebugLogOn) Debug.Log("Raycast has detected a " + hitData.collider.name);
-                if (interactAction.WasPressedThisFrame())
+                /*if (interactAction.WasPressedThisFrame())
                 {
                     if (Time.time - lastInteractTime < interactCooldown) return;
                     lastInteractTime = Time.time;
                     
-                    /*if (raydebugLogOn)*/Debug.Log("clicked " + hitData.collider.name);
+                    Debug.Log("clicked " + hitData.collider.name);
                     if (raydebugLogOn)Debug.Log("Now Trying to interact with" + hitData.collider.name);
                     
                     IInteractable interactableObject =
@@ -54,14 +44,8 @@ public class InteractRaycast : MonoBehaviour
                     hitData.collider.GetComponentInParent<IInteractable>();
 
                     if (interactableObject != null) { interactableObject.Interact(); }
-                }
+                }*/
             }
-        }
-
-        if (debugAction.WasPressedThisFrame())
-        {
-            raydebugLogOn = !raydebugLogOn;
-            Debug.Log("Ray logs toggled!");
         }
 
         logTimer += Time.deltaTime;

@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "ZY22J4766Q",
+    "m_SelectedDeviceId": "ZY22J475MC",
     "m_SelectedProcess": {
-        "deviceId": "ZY22J4766Q",
+        "deviceId": "ZY22J475MC",
         "name": "com.unity.template.ar_mobile",
-        "processId": 9078,
+        "processId": 20377,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -60,6 +60,30 @@
             "deviceId": "ZY22J4766Q",
             "name": "com.unity.template.ar_mobile",
             "processId": 9078,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 12399,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 16393,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 17605,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 20377,
             "exited": false
         }
     ],

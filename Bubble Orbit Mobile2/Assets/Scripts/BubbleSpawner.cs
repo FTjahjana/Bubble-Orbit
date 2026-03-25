@@ -6,7 +6,7 @@ public class BubbleSpawner : MonoBehaviour
 {
     public GameObject bubblePrefab;
 
-    private Vector2 towerBoundaries;
+    private Vector2 towerBoundaries; [SerializeField]float towerBoundaryExcess;
     private float towerLowerBoundary;
 
     [Header("base settings")]
@@ -59,7 +59,7 @@ public class BubbleSpawner : MonoBehaviour
         Rigidbody rb = b.GetComponent<Rigidbody>();
 
         //target bubble position
-        float dist = Random.Range(towerBoundaries.x + 3, towerBoundaries.y + 3);
+        float dist = Random.Range(towerBoundaries.x + towerBoundaryExcess, towerBoundaries.y + towerBoundaryExcess);
         // H
         float yaw = Random.Range(0f, 360f);
         // V

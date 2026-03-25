@@ -43,23 +43,22 @@ public class TowerOrbit : MonoBehaviour
         }
 
         globalAxis = transform.parent;
-
         globalAxis.position = player.transform.position;
         globalAxis.rotation = Quaternion.identity;
 
         distFromPlayerLimits = GameManager.Instance.Tower.GetComponent<Tower>().innerAndOuterBoundary;
 
-        distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
         distFromPlayer = initialDistfromPlayer;
 
         transform.localPosition = Vector3.forward * distFromPlayer;
-        
+        Debug.Log("Tower spawned");
     }
 
     void Update()
     {
         //if (!GameManager.Instance.inGame) return;
-        
+        distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+
         AutoRotation();
 
     }

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6496872930023967645}
   m_Layer: 0
-  m_Name: Gameplay(Tower)
+  m_Name: tower old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

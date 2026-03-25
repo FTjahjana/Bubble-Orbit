@@ -59,6 +59,8 @@
     <Compile Include="Assets\Scripts\Minor Assist Function stuff\disableself.cs" />
     <Compile Include="Assets\Settings\Project Configuration\SceneTemplate_RotateCube.cs" />
     <Compile Include="Assets\Scripts\BubbleSpawner.cs" />
+    <Compile Include="Assets\Scripts\pew.cs" />
+    <Compile Include="Assets\Scripts\pew_bullet.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Bubble.cs" />
@@ -1220,12 +1222,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARFoundation.InternalUtils.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="PPv2URPConverters">
-      <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.XR.ARKit.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.ARKit.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PPv2URPConverters">
+      <HintPath>Library\ScriptAssemblies\PPv2URPConverters.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Rendering.LightTransport.Editor">
