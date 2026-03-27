@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [Header("Desktop Elements")]
     [SerializeField] List<GameObject> desktopElements;
 
+    public event System.Action OnTowerSpawned;
+
     GameTimer gameTimer;
 
     public enum GameMode
@@ -59,6 +61,11 @@ public class GameManager : MonoBehaviour
         
         //Player = GameObject.FindGameObjectWithTag("Player");
         gameTimer = GetComponent<GameTimer>(); 
+    }
+
+    public void TowerSpawned()
+    {
+        OnTowerSpawned?.Invoke();
     }
 
     public void StartGame()

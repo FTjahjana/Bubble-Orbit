@@ -32,12 +32,12 @@ public class MainMenu : MonoBehaviour
 
     void OnEnable()
     {
-        
+        GameManager.Instance.OnTowerSpawned += OnTowerSpawned;
     }
 
     void OnDisable()
     {
-        
+        GameManager.Instance.OnTowerSpawned -= OnTowerSpawned;
     }
 
     public void ShowPage(int PageIndex)
@@ -46,6 +46,11 @@ public class MainMenu : MonoBehaviour
         {
             pages[i].SetActive(i == PageIndex);
         }
+    }
+
+    void OnTowerSpawned()
+    {
+        //idk yet but i just want this script to be aware of it
     }
 
     public void Play()
