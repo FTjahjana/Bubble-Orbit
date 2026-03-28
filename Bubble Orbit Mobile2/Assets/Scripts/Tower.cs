@@ -20,7 +20,7 @@ public class Tower : MonoBehaviour
 
     void Start()
     {
-        GameManager.Instance.TowerSpawned();
+        GameManager.Instance.TowerSpawned(); Debug.Log("Tower spawned");
         (lowerBoundary_r, lowerBoundary_h, lowerBoundary_p) = FindLowerCircle();
     }
 

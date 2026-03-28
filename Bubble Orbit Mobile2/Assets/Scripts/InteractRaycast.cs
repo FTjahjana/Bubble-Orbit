@@ -16,7 +16,7 @@ public class InteractRaycast : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!GameManager.Instance.inGame) return;
+        if (GameManager.Instance.appMode != GameManager.AppMode.Game) return;
 
         //get forward vector
         Vector3 fwd = transform.TransformDirection(Vector3.forward);

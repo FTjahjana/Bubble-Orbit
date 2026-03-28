@@ -9,11 +9,14 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player, Tower/*, MainMenu*/;
 
-    public bool inGame = false, isAR;
-
     public event System.Action OnTowerSpawned;
+    public event System.Action OnAppModeChanged;
 
-    GameTimer gameTimer;
+    public enum AppMode
+    { MainMenu, Game, Exit, Other }
+    public AppMode appMode;
+
+    public GamePlayTracker gamePlayTracker;
 
     public enum GameMode
     { Rush, Endless }
@@ -22,9 +25,7 @@ public class GameManager : MonoBehaviour
     { if (gamemodename == "Rush"){gameMode = GameMode.Rush;}
     if (gamemodename == "Endless"){gameMode = GameMode.Endless;}}
 
-    public enum ScreenMode
-    { MainMenu, Game, Exit, Other }
-    public ScreenMode screenMode;
+
 
     void Awake()
     {
@@ -40,27 +41,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Started");
-        gameTimer = GetComponent<GameTimer>(); 
-    }
-
-    public void TowerSpawned()
-    {
-        OnTowerSpawned?.Invoke();
+        Debug.Log("App Started");
     }
 
     public void StartGame()
     {
-        inGame = true;
-        if (gameMode == GameMode.Rush) gameTimer.StartTimer();
+        appMode = AppMode.Game; OnAppModeChanged?.Invoke();
+        if (gameMode == GameMode.Rush) gamePlayTracker.StartTimer();
     }
 
     public void EndGame()
     {
-        inGame = false;
-        gameTimer.StopTimer();
+        appMode = AppMode.Exit;
+        gamePlayTracker.StopTimer();
         Debug.Log("Game ended!");
     }
+
+    public void TowerSpawned(){OnTowerSpawned?.Invoke();}
 
     #if UNITY_EDITOR
     void OnGUI()
@@ -69,9 +66,7 @@ public class GameManager : MonoBehaviour
         style.fontSize = 48; style.alignment = TextAnchor.UpperCenter;
         style.normal.textColor = Color.cyan;
 
-        GUI.Label(new Rect(0, 20, Screen.width, 80), $"inGame: ({inGame})", style
-        );
-        GUI.Label(new Rect(0, 100, Screen.width, 80), $"screenMode: ({screenMode})", style);
+        GUI.Label(new Rect(0, 20, Screen.width, 80), $"AppMode: ({appMode})", style);
 
     }
     #endif

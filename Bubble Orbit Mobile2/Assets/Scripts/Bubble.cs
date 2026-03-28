@@ -1,3 +1,4 @@
+using System.Net.NetworkInformation;
 using UnityEngine;
 
 public class Bubble : MonoBehaviour, IInteractable
@@ -9,7 +10,7 @@ public class Bubble : MonoBehaviour, IInteractable
 
     Vector3 targetScale;
 
-    Rigidbody rb;
+    Rigidbody rb; GamePlayTracker gamePlayTracker;
 
     void Awake()
     {
@@ -22,6 +23,8 @@ public class Bubble : MonoBehaviour, IInteractable
     {
         Destroy(gameObject, lifetime);
         Debug.Log("<color=aqua>New Bubble:</color> " + gameObject.name);
+
+        gamePlayTracker = GameManager.Instance.gamePlayTracker;
 
         //growth
         transform.localScale = targetScale - (Vector3.one * .3f);
@@ -50,7 +53,7 @@ public class Bubble : MonoBehaviour, IInteractable
     public void Pop()
     {
         Debug.Log($"<color=red>{gameObject.name} Popped!</color>");
-        if (ScoreManager.Instance != null) ScoreManager.Instance.AddScore(1);
+        gamePlayTracker.AddScore(1);
         Destroy(gameObject);
     }
 }

@@ -48,28 +48,27 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.56f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Minor Assist Function stuff\[ButtonState]Follow Parent.cs" />
     <Compile Include="Assets\Scripts\MainButton.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\UI\Scripts\CutoutMaskUI.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARTemplateMenuManager.cs" />
-    <Compile Include="Assets\Scripts\ScoreManager.cs" />
-    <Compile Include="Assets\Scripts\SpawnedMenu.cs" />
-    <Compile Include="Assets\Scripts\Minor Assist Function stuff\camicon.cs" />
+    <Compile Include="Assets\Scripts\(Master) UICanvas.cs" />
+    <Compile Include="Assets\Scripts\GamePlayTracker.cs" />
     <Compile Include="Assets\Scripts\InteractRaycast.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\GoalManager.cs" />
     <Compile Include="Assets\Scripts\TowerOrbit.cs" />
-    <Compile Include="Assets\Scripts\Minor Assist Function stuff\disableself.cs" />
     <Compile Include="Assets\Settings\Project Configuration\SceneTemplate_RotateCube.cs" />
     <Compile Include="Assets\Scripts\BubbleSpawner.cs" />
-    <Compile Include="Assets\Scripts\pew.cs" />
-    <Compile Include="Assets\Scripts\pew_bullet.cs" />
     <Compile Include="Assets\Scripts\IInteractable.cs" />
+    <Compile Include="Assets\Scripts\Assists\[ButtonState]Follow Parent.cs" />
+    <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Bubble.cs" />
+    <Compile Include="Assets\Scripts\Assists\disableself.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
+    <Compile Include="Assets\Scripts\Assists\camicon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARPlaneMeshVisualizerFader.cs" />
-    <Compile Include="Assets\Scripts\GameTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -1242,6 +1241,10 @@
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Config.Runtime">

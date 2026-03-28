@@ -5,11 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class MainMenu : MonoBehaviour
+public class MainMenu : UIGroup
 {
-    [SerializeField] GameObject GamePlayCanvas;
-    //public OrbitMovement orbitMovement;
-
     [HideInInspector]bool inGame;
 
     public string chosenGameMode;
@@ -18,11 +15,11 @@ public class MainMenu : MonoBehaviour
     public class buttons { public Button button; public bool state; }
     public List<buttons> InitButtonSettings;
 
-    Animator anim; 
+    Animator anim;
    
     void Start()
     {
-        inGame = GameManager.Instance.inGame;
+        inGame = GameManager.Instance.appMode == GameManager.AppMode.Game;
         if (inGame) gameObject.SetActive(false);
         
         anim = GetComponent<Animator>();
@@ -49,7 +46,7 @@ public class MainMenu : MonoBehaviour
     public void StartApp()
     {
         if(InitButtonSettings[5].button.gameObject.name == "signboard" &&
-            InitButtonSettings[0].button.gameObject.name == "Main Button")
+            InitButtonSettings[0].button.gameObject.name == "(Main Button)")
         {
             InitButtonSettings[5].button.interactable = false;
             InitButtonSettings[0].button.gameObject.GetComponent<Animator>().SetTrigger("Start");
@@ -60,7 +57,7 @@ public class MainMenu : MonoBehaviour
     
     void OnTowerSpawned()
     {
-        if(InitButtonSettings[0].button.gameObject.name == "Main Button")
+        if(InitButtonSettings[0].button.gameObject.name == "(Main Button)")
         {
             InitButtonSettings[0].button.interactable = true;
             anim.SetTrigger("Focus");
@@ -70,11 +67,9 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if (!inGame) {
-            GameManager.Instance.SetGameMode(chosenGameMode);
-            GameManager.Instance.StartGame();
-            GamePlayCanvas.SetActive(true);
-            gameObject.SetActive(false);
+        if (!inGame) { msUiRef.d["GamePlay"].obj.SetActive(true); msUiRef.d["Flash Screens"].obj.SetActive(false);
+            GameManager.Instance.SetGameMode(chosenGameMode); GameManager.Instance.StartGame();
+             gameObject.SetActive(false);
         }
     }
 

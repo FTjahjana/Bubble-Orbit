@@ -51,22 +51,31 @@ public class TowerOrbit : MonoBehaviour
         distFromPlayer = initialDistfromPlayer;
 
         transform.localPosition = Vector3.forward * distFromPlayer;
-        Debug.Log("Tower spawned");
+
+        if (GameManager.Instance.appMode == GameManager.AppMode.MainMenu)
+        {transform.position = Camera.main.transform.position + Camera.main.transform.forward * initialDistfromPlayer;}
+    
     }
 
     void Update()
     {
-        //if (!GameManager.Instance.inGame) return;
         distFromPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        AutoRotation();
+        if (GameManager.Instance.appMode == GameManager.AppMode.MainMenu) AutoRotation(true);
+        if (GameManager.Instance.appMode == GameManager.AppMode.Game) AutoRotation();
 
     }
 
-    // ---------------- ROTATION : ORBIT ----------------
-    void AutoRotation()
+    void OnGameStart()
     {
-        globalAxis.Rotate(Vector3.up, globalOrbitSpeed * Time.deltaTime, Space.World);
+        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+    }
+
+    // ---------------- ROTATION : ORBIT ----------------
+    void AutoRotation(bool local = false)
+    {
+        Transform rotAxis = local ? transform : globalAxis;
+        rotAxis.Rotate(Vector3.up, globalOrbitSpeed * Time.deltaTime, Space.World);
     }
 
     #if UNITY_EDITOR
