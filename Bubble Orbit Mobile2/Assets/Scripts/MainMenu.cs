@@ -8,12 +8,15 @@ using UnityEngine.InputSystem;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] GameObject GamePlayCanvas;
-    public GameObject[] pages;
     //public OrbitMovement orbitMovement;
 
     [HideInInspector]bool inGame;
 
     public string chosenGameMode;
+
+    [System.Serializable]
+    public class buttons { public Button button; public bool state; }
+    public List<buttons> InitButtonSettings;
 
     Animator anim; 
    
@@ -23,6 +26,9 @@ public class MainMenu : MonoBehaviour
         if (inGame) gameObject.SetActive(false);
         
         anim = GetComponent<Animator>();
+
+        foreach (var b in InitButtonSettings)
+        { b.button.interactable = b.state; }
     }
     
     public void ChooseGameMode(string chosen)
@@ -40,17 +46,26 @@ public class MainMenu : MonoBehaviour
         GameManager.Instance.OnTowerSpawned -= OnTowerSpawned;
     }
 
-    public void ShowPage(int PageIndex)
+    public void StartApp()
     {
-        for (int i = 0; i < pages.Length; i++)
+        if(InitButtonSettings[5].button.gameObject.name == "signboard" &&
+            InitButtonSettings[0].button.gameObject.name == "Main Button")
         {
-            pages[i].SetActive(i == PageIndex);
+            InitButtonSettings[5].button.interactable = false;
+            InitButtonSettings[0].button.gameObject.GetComponent<Animator>().SetTrigger("Start");
+            anim.SetTrigger("Start");
         }
+        else Debug.LogWarning("Failed to run MainMenu.StartApp");
     }
-
+    
     void OnTowerSpawned()
     {
-        //idk yet but i just want this script to be aware of it
+        if(InitButtonSettings[0].button.gameObject.name == "Main Button")
+        {
+            InitButtonSettings[0].button.interactable = true;
+            anim.SetTrigger("Focus");
+        }
+        else Debug.LogWarning("Failed to run MainMenu.OnTowerSpawned");
     }
 
     public void Play()

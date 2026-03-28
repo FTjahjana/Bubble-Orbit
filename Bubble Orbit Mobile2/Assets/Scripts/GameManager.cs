@@ -10,28 +10,21 @@ public class GameManager : MonoBehaviour
     public GameObject Player, Tower/*, MainMenu*/;
 
     public bool inGame = false, isAR;
-    
-    [Header("XR Mobile Elements")]
-    [SerializeField] List<GameObject> xrElements; 
-    
-    [Header("Desktop Elements")]
-    [SerializeField] List<GameObject> desktopElements;
 
     public event System.Action OnTowerSpawned;
 
     GameTimer gameTimer;
 
     public enum GameMode
-    {
-        Rush,
-        Endless
-    }
+    { Rush, Endless }
     public GameMode gameMode;
     public void SetGameMode(string gamemodename)
-    {
-        if (gamemodename == "Rush"){gameMode = GameMode.Rush;}
-        if (gamemodename == "Endless"){gameMode = GameMode.Endless;}
-    }
+    { if (gamemodename == "Rush"){gameMode = GameMode.Rush;}
+    if (gamemodename == "Endless"){gameMode = GameMode.Endless;}}
+
+    public enum ScreenMode
+    { MainMenu, Game, Exit, Other }
+    public ScreenMode screenMode;
 
     void Awake()
     {
@@ -42,24 +35,12 @@ public class GameManager : MonoBehaviour
         }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
-
-        //ManagePlatform();
-        
+        DontDestroyOnLoad(gameObject);        
     }
 
     void Start()
     {
         Debug.Log("Started");
-
-/*
-        if (!inGame)
-        {
-            MainMenu = GameObject.FindGameObjectWithTag("MainMenu");
-            MainMenu.SetActive(true);
-        }*/
-        
-        //Player = GameObject.FindGameObjectWithTag("Player");
         gameTimer = GetComponent<GameTimer>(); 
     }
 
@@ -90,6 +71,8 @@ public class GameManager : MonoBehaviour
 
         GUI.Label(new Rect(0, 20, Screen.width, 80), $"inGame: ({inGame})", style
         );
+        GUI.Label(new Rect(0, 100, Screen.width, 80), $"screenMode: ({screenMode})", style);
+
     }
     #endif
 
