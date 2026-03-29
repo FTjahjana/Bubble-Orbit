@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public event System.Action OnAppModeChanged;
 
     public enum AppMode
-    { MainMenu, Game, Exit, Other }
+    { MainMenu, Game, Exit, Paused, Other }
     public AppMode appMode;
 
     public GamePlayTracker gamePlayTracker;
@@ -47,14 +47,13 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         appMode = AppMode.Game; OnAppModeChanged?.Invoke();
-        if (gameMode == GameMode.Rush) gamePlayTracker.StartTimer();
+        if (gameMode == GameMode.Rush || gameMode == GameMode.Endless) gamePlayTracker.StartTimer();
     }
 
     public void EndGame()
     {
-        appMode = AppMode.Exit;
-        gamePlayTracker.StopTimer();
-        Debug.Log("Game ended!");
+        appMode = AppMode.Exit; OnAppModeChanged?.Invoke();
+        gamePlayTracker.StopTimer(); Debug.Log("Game ended!");
     }
 
     public void TowerSpawned(){OnTowerSpawned?.Invoke();}

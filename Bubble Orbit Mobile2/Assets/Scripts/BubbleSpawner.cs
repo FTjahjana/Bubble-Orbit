@@ -35,7 +35,8 @@ public class BubbleSpawner : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.appMode != GameManager.AppMode.Game) return;
+        if (GameManager.Instance.appMode != GameManager.AppMode.Game&&
+        GameManager.Instance.appMode != GameManager.AppMode.Paused) return;
         
         bubbles.RemoveAll(b => b == null);
 

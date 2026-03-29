@@ -58,16 +58,17 @@
     <Compile Include="Assets\Scripts\TowerOrbit.cs" />
     <Compile Include="Assets\Settings\Project Configuration\SceneTemplate_RotateCube.cs" />
     <Compile Include="Assets\Scripts\BubbleSpawner.cs" />
-    <Compile Include="Assets\Scripts\IInteractable.cs" />
     <Compile Include="Assets\Scripts\Assists\[ButtonState]Follow Parent.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\Assists\LookAtCamera.cs" />
     <Compile Include="Assets\Scripts\Bubble.cs" />
-    <Compile Include="Assets\Scripts\Assists\disableself.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
+    <Compile Include="Assets\Scripts\Assists\dumbwaystodie.cs" />
     <Compile Include="Assets\Scripts\Assists\camicon.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
+    <Compile Include="Assets\Scripts\Assists\MaskInverter.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\ARPlaneMeshVisualizerFader.cs" />
   </ItemGroup>
   <ItemGroup>

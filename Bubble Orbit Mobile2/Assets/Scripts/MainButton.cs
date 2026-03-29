@@ -45,7 +45,7 @@ public class MainButton : UIGroup
 
     public void ButtonClicked()
     {
-        Debug.Log("Main Button clicked");
+        //Debug.Log("Main Button clicked");
         switch (GameManager.Instance.appMode)
         {
             case GameManager.AppMode.MainMenu:

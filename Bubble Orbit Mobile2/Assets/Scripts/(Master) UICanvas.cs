@@ -19,6 +19,11 @@ public class Master_UICanvas : MonoBehaviour
     {
         foreach (MainGroup group in mainGroups)
         {
+            if (group.script == null) group.obj.GetComponent<UIGroup>();
+            if (group.anim == null) group.obj.GetComponent<Animator>();
+            //if (group.audsrc == null) group.obj.GetComponent<UIGroup>();
+
+
             if (group.script != null) group.script.msUiRef = this;
         }
     }

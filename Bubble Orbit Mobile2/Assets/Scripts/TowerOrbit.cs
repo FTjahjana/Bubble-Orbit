@@ -6,16 +6,16 @@ using UnityEditor;
 
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
-using UnityEngine.Animations;
 
 public class TowerOrbit : MonoBehaviour
 {
     public Transform globalAxis;   private bool isAR;
     GameObject player;
 
-    [Header("Movement Speeds - Automatic")]
+    [Header("Movement")]
     public bool AutomaticOrbit = true;
     public float globalOrbitSpeed = 33f; // units/sec
+    Animator anim; 
 
     [Header("Limits")]
     private Vector2 distFromPlayerLimits;
@@ -27,10 +27,12 @@ public class TowerOrbit : MonoBehaviour
 
     void OnEnable()
     {
+        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged += AppModeChanged;
     }
 
     void OnDisable()
     {
+        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged -= AppModeChanged;
     }
 
     void Start()
@@ -48,12 +50,10 @@ public class TowerOrbit : MonoBehaviour
 
         distFromPlayerLimits = GameManager.Instance.Tower.GetComponent<Tower>().innerAndOuterBoundary;
 
-        distFromPlayer = initialDistfromPlayer;
+        distFromPlayer = initialDistfromPlayer; transform.localPosition = Vector3.forward * distFromPlayer;
 
-        transform.localPosition = Vector3.forward * distFromPlayer;
-
-        if (GameManager.Instance.appMode == GameManager.AppMode.MainMenu)
-        {transform.position = Camera.main.transform.position + Camera.main.transform.forward * initialDistfromPlayer;}
+        anim = GetComponent<Animator>(); anim.enabled = false;
+        AppModeChanged();
     
     }
 
@@ -66,9 +66,26 @@ public class TowerOrbit : MonoBehaviour
 
     }
 
-    void OnGameStart()
+    void AppModeChanged()
     {
-        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        if (GameManager.Instance.appMode == GameManager.AppMode.Game)
+        {
+            anim.enabled = false;
+            transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+            transform.position = player.transform.position + Camera.main.transform.forward * distFromPlayer;
+        }
+
+        if (GameManager.Instance.appMode == GameManager.AppMode.MainMenu)
+        {
+            anim.enabled = false;
+            transform.position = Camera.main.transform.position + Camera.main.transform.forward * initialDistfromPlayer;
+        }
+
+        if (GameManager.Instance.appMode == GameManager.AppMode.Exit)
+        {   
+            anim.enabled = true;
+            anim.SetTrigger("Exit");
+        }
     }
 
     // ---------------- ROTATION : ORBIT ----------------
