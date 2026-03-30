@@ -14,11 +14,14 @@ public class Bubble : MonoBehaviour
     Rigidbody rb; GamePlayTracker gamePlayTracker; Animator anim; 
     [SerializeField]TextMeshPro scoreText, comboText;
 
+    [SerializeField]public AudioSource inBubble, outBubble, popBubble;
+      public AudioClip greatScore, perfectScore;
+
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         targetScale = transform.localScale;
-
     }
 
     void Start()
@@ -52,10 +55,16 @@ public class Bubble : MonoBehaviour
     {
         Debug.Log($"<color=red>{gameObject.name} Popped!</color> (+{score})");
         gamePlayTracker.AddScore(score); scoreText.text = $"{score}";
+
+        if (score == 50) outBubble.PlayOneShot(perfectScore);
+        if (score == 20) outBubble.PlayOneShot(greatScore);
         
         bool combo = bubblePopCount>=3; string trig;
         if (combo) {comboText.text = $"Combo(x{bubblePopCount})"; trig = "ComboPop";}
         else {comboText.text = "Combo"; trig = "Pop";}
+        popBubble.Play();
         anim.SetTrigger(trig);
     }
+
+    
 }

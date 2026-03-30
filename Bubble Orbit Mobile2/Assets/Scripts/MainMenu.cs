@@ -15,7 +15,7 @@ public class MainMenu : UIGroup
     public class buttons { public Button button; public bool state; }
     public List<buttons> InitButtonSettings;
 
-    Animator anim;
+    Animator anim; [SerializeField]Animator waveAnim;
    
     void Start()
     {
@@ -91,6 +91,11 @@ public class MainMenu : UIGroup
         #endif
         
         // add anims later
+    }
+
+    public void setWaveAnim()
+    {
+        waveAnim.enabled = !waveAnim.isActiveAndEnabled;
     }
 
 }

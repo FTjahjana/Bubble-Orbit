@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public GameObject Player, Tower/*, MainMenu*/;
+    public GameObject Player;
+    public Tower tower;
 
     public event System.Action OnTowerSpawned;
     public event System.Action OnAppModeChanged;
@@ -19,13 +20,13 @@ public class GameManager : MonoBehaviour
     public GamePlayTracker gamePlayTracker;
 
     public enum GameMode
-    { Rush, Endless }
+    { Rush, Endless, N}
     public GameMode gameMode;
     public void SetGameMode(string gamemodename)
     { if (gamemodename == "Rush"){gameMode = GameMode.Rush;}
     if (gamemodename == "Endless"){gameMode = GameMode.Endless;}}
 
-
+    public bool firstTime = true;
 
     void Awake()
     {

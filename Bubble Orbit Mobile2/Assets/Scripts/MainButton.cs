@@ -1,10 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class MainButton : UIGroup
 {
     Button btn; Animator anim; 
     public Shooter shooter;
+    UIGroupAudioMaster audioMas;
+    [SerializeField] AudioClip camshot, gameShot, shutDown;
 
     void Start()
     {
@@ -12,6 +17,7 @@ public class MainButton : UIGroup
         btn.onClick.AddListener(ButtonClicked);
 
         anim = this.GetComponent<Animator>();
+        audioMas = this.GetComponent<UIGroupAudioMaster>();
         GameManager.Instance.OnAppModeChanged += AppModeChanged;
     }
 
@@ -50,14 +56,16 @@ public class MainButton : UIGroup
         {
             case GameManager.AppMode.MainMenu:
                 msUiRef.d["Flash Screens"].anim.SetTrigger("C");
+                audioMas.PlayClip(camshot);
+                audioMas.GoToSnapshot(0);
                 break;
 
             case GameManager.AppMode.Game:
-                shooter.Shoot();
+                shooter.Shoot(); audioMas.PlayClip(gameShot);
                 break;
 
             case GameManager.AppMode.Exit:
-                // exit logic here
+                audioMas.PlayClip(shutDown);
                 break;
         }
     }

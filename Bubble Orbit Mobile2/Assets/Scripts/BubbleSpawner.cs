@@ -57,6 +57,7 @@ public class BubbleSpawner : MonoBehaviour
 
         b.name = "Bubble" + bubbleId; bubbleId++;
         b.transform.localScale = Vector3.one * Random.Range(.7f, 1.3f);
+
         Rigidbody rb = b.GetComponent<Rigidbody>();
 
         //target bubble position

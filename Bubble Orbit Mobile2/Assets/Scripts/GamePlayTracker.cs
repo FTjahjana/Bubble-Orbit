@@ -1,6 +1,8 @@
 using UnityEngine;
-using TMPro; using UnityEngine.UI;
+using TMPro; 
+using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.Audio;
 
 public class GamePlayTracker : UIGroup
 {
@@ -22,12 +24,19 @@ public class GamePlayTracker : UIGroup
     [SerializeField] private TextMeshProUGUI scoreText;
     public int CurrentScore { get; private set; }
 
-    Animator anim;
-    
+    Animator anim; [SerializeField] Animator H_anim;
+    [SerializeField] AudioSource soundtrack; 
+    [SerializeField] AudioMixerSnapshot gameplaySnapshot;
+    [SerializeField] AudioClip rushAud, endlessAud;
+
+    void Awake()
+    {
+        anim = GetComponent<Animator>(); 
+    }
+
     void Start()
     {
-        anim = GetComponent<Animator>(); anim.enabled = true; 
-        GameManager.Instance.OnAppModeChanged += AppModeChanged;
+        anim.enabled = true; 
     }
 
     void OnEnable()
@@ -56,14 +65,22 @@ public class GamePlayTracker : UIGroup
     }
 
     private IEnumerator TimerRoutine()
-    {
+    {   
+        
+        gameplaySnapshot.TransitionTo(1.0f);
         yield return new WaitForSeconds(.5f);
 
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Rush) 
-        {timer = rushDuration; anim.enabled = false;}
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Endless) 
-        {timer = 0; anim.enabled = true; anim.SetTrigger("HourglassLoop");}
-
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Rush)
+        {
+            timer = rushDuration; anim.enabled = true; 
+            soundtrack.clip = rushAud; H_anim.SetTrigger("HourglassRush");
+        }
+        if (GameManager.Instance.gameMode == GameManager.GameMode.Endless)
+        {
+            timer = 0; anim.enabled = true;
+            soundtrack.clip = rushAud; H_anim.SetTrigger("HourglassLoop");
+        }
+        soundtrack.Play();
         CurrentScore = 0;
         UpdateUI();
 
@@ -95,6 +112,8 @@ public class GamePlayTracker : UIGroup
             timer = 0f;
             UpdateUI();
             GameManager.Instance.EndGame();
+            H_anim.enabled = false;
+            anim.enabled = true; anim.SetTrigger("Exit");
             
         }
 
@@ -112,16 +131,14 @@ public class GamePlayTracker : UIGroup
         timeLeftText.text = timer<99 ? ((int)timer).ToString("D2"):((int)timer).ToString();;
         scoreText.text = CurrentScore.ToString("D5");
 
-        if (((int)timer)%((int)rushDuration/4)==0) hourglassIcon.sprite = hourglassSprites[((int)timer)/((int)rushDuration/4)-1];
-
     }
 
     public void AppModeChanged()
     {
         if (GameManager.Instance.appMode == GameManager.AppMode.Paused){paused = true;}
         if (GameManager.Instance.appMode == GameManager.AppMode.Game){ paused = false;
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Rush) anim.enabled = false;
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Endless) anim.enabled = true; 
+        //if (GameManager.Instance.gameMode == GameManager.GameMode.Rush) ;
+        //if (GameManager.Instance.gameMode == GameManager.GameMode.Endless) ; 
         }
     }
 }

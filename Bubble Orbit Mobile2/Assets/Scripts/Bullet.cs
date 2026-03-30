@@ -25,9 +25,9 @@ public class Bullet : MonoBehaviour
             float normalized = distance / radius;
 
             int score;
-            if (normalized < 0.3f) score = 50;
-            else if (normalized < 0.7f) score = 20;
-            else score = 10;
+            if (normalized < 0.3f) {score = 50;}
+            else if (normalized < 0.7f) {score = 20;}
+            else {score = 10;}
 
             Bubble bubble = collision.collider.GetComponent<Bubble>();
             bubble.Pop(score, bubblePopCount);

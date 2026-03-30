@@ -15,7 +15,7 @@ public class Tower : MonoBehaviour
 
     void Awake()
     {
-        GameManager.Instance.Tower = this.gameObject;
+        GameManager.Instance.tower = this;
     }
 
     void Start()

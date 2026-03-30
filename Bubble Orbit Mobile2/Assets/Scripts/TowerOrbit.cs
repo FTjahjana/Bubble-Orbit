@@ -48,7 +48,7 @@ public class TowerOrbit : MonoBehaviour
         globalAxis.position = player.transform.position;
         globalAxis.rotation = Quaternion.identity;
 
-        distFromPlayerLimits = GameManager.Instance.Tower.GetComponent<Tower>().innerAndOuterBoundary;
+        distFromPlayerLimits = GameManager.Instance.tower.innerAndOuterBoundary;
 
         distFromPlayer = initialDistfromPlayer; transform.localPosition = Vector3.forward * distFromPlayer;
 

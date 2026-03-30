@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: wave
+    path: 
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -208,7 +208,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: wave
+    path: 
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -230,7 +230,7 @@ AnimationClip:
     - time: 3.6833334
       value: {fileID: 242574625, guid: 44ad06a3cee84b148943f1bcbfcff70d, type: 3}
     attribute: m_Sprite
-    path: wave
+    path: 
     classID: 114
     script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
     flags: 2
@@ -242,7 +242,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3657739657
+      path: 0
       attribute: 1460864421
       script: {fileID: 0}
       typeID: 224
@@ -251,7 +251,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3657739657
+      path: 0
       attribute: 538195251
       script: {fileID: 0}
       typeID: 224
@@ -260,7 +260,7 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 3657739657
+      path: 0
       attribute: 2015549526
       script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
       typeID: 114
@@ -350,7 +350,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.x
-    path: wave
+    path: 
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -488,7 +488,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: wave
+    path: 
     classID: 224
     script: {fileID: 0}
     flags: 0
