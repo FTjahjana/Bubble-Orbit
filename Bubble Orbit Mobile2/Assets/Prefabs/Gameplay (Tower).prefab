@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalAxis: {fileID: 0}
   AutomaticOrbit: 1
+  initialGlobalOrbitSpeed: 33
   globalOrbitSpeed: 45
   verticalAngleLimits: {x: -45, y: 45}
   initialDistfromPlayer: 2

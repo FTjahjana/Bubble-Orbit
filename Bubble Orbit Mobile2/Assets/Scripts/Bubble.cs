@@ -17,11 +17,13 @@ public class Bubble : MonoBehaviour
     [SerializeField]public AudioSource inBubble, outBubble, popBubble;
       public AudioClip greatScore, perfectScore;
 
+    MeshRenderer meshRenderer; [SerializeField]Material innerMat, transparentInnerMat;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
         targetScale = transform.localScale;
+        meshRenderer= GetComponent<MeshRenderer>();
     }
 
     void Start()
@@ -46,9 +48,11 @@ public class Bubble : MonoBehaviour
         rb.AddForce(Random.insideUnitSphere * wanderForce, ForceMode.Acceleration);
     }
 
-    void OnCollisionEnter(Collision other)
+    public void insideMesh(bool state)
     {
-        //Pop();
+        var mats = meshRenderer.materials;
+        mats[2] = state? innerMat : transparentInnerMat;
+        meshRenderer.materials = mats;
     }
 
     public void Pop(int score, int bubblePopCount)
@@ -65,6 +69,8 @@ public class Bubble : MonoBehaviour
         popBubble.Play();
         anim.SetTrigger(trig);
     }
+
+
 
     
 }

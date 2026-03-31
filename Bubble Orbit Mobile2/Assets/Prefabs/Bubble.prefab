@@ -64,6 +64,8 @@ MonoBehaviour:
   popBubble: {fileID: 3548470639936788366}
   greatScore: {fileID: 8300000, guid: 957118189593ac34a89234cd71ee4eec, type: 3}
   perfectScore: {fileID: 8300000, guid: 2d40352f282fc0248aa28b5b8b82ed35, type: 3}
+  innerMat: {fileID: 2100000, guid: 65b431e1a0070704fb25b19244bf56d6, type: 2}
+  transparentInnerMat: {fileID: 2100000, guid: d6bae8637067e87459776fde24fae918, type: 2}
 --- !u!82 &2191396574217253721
 AudioSource:
   m_ObjectHideFlags: 0
@@ -406,6 +408,7 @@ MeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: 565cdf2d1f8a1df45b0d3546b6444a1f, type: 2}
   - {fileID: -876546973899608171, guid: 22ac6ac270eb1d44b9047ed51b19e6d8, type: 3}
+  - {fileID: 2100000, guid: d6bae8637067e87459776fde24fae918, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

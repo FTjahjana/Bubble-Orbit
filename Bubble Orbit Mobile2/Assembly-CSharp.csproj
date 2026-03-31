@@ -61,6 +61,7 @@
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\GoalManager.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\UIGroupAudioMaster.cs" />
     <Compile Include="Assets\Scripts\TowerOrbit.cs" />
+    <Compile Include="Assets\Scripts\CollisionToBubble.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioPlayRandomSpot.cs" />
     <Compile Include="Assets\Settings\Project Configuration\SceneTemplate_RotateCube.cs" />
     <Compile Include="Assets\Scripts\BubbleSpawner.cs" />
@@ -75,7 +76,6 @@
     <Compile Include="Assets\Scripts\Assists\dumbwaystodie.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioSimpleSnapshotCollision.cs" />
     <Compile Include="Assets\Scripts\Assists\camicon.cs" />
-    <Compile Include="Assets\Scripts\CollisionAudioBubble.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Shooter.cs" />
     <Compile Include="Assets\Scripts\Assists\MaskInverter.cs" />

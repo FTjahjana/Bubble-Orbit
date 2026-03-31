@@ -55,7 +55,7 @@ public class MainButton : UIGroup
         switch (GameManager.Instance.appMode)
         {
             case GameManager.AppMode.MainMenu:
-                msUiRef.d["Flash Screens"].anim.SetTrigger("C");
+                msUiRef.d["Flash Screens"].anim.SetTrigger("F");
                 audioMas.PlayClip(camshot);
                 audioMas.GoToSnapshot(0);
                 break;

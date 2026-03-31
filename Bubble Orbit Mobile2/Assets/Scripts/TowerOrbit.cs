@@ -14,11 +14,11 @@ public class TowerOrbit : MonoBehaviour
 
     [Header("Movement")]
     public bool AutomaticOrbit = true;
+    public float initialGlobalOrbitSpeed = 33f;
     public float globalOrbitSpeed = 33f; // units/sec
     Animator anim; 
 
     [Header("Limits")]
-    private Vector2 distFromPlayerLimits;
     public Vector2 verticalAngleLimits = new Vector2(-45f, 45f);
 
     [Header("Camera")]
@@ -47,8 +47,6 @@ public class TowerOrbit : MonoBehaviour
         globalAxis = transform.parent;
         globalAxis.position = player.transform.position;
         globalAxis.rotation = Quaternion.identity;
-
-        distFromPlayerLimits = GameManager.Instance.tower.innerAndOuterBoundary;
 
         distFromPlayer = initialDistfromPlayer; transform.localPosition = Vector3.forward * distFromPlayer;
 
@@ -93,6 +91,12 @@ public class TowerOrbit : MonoBehaviour
     {
         Transform rotAxis = local ? transform : globalAxis;
         rotAxis.Rotate(Vector3.up, globalOrbitSpeed * Time.deltaTime, Space.World);
+    }
+
+    public void ChangeOrbitSpeed(float newSpeedMultiplier, bool reset = false)
+    {
+        if (!reset) globalOrbitSpeed = initialGlobalOrbitSpeed*newSpeedMultiplier;
+        else globalOrbitSpeed = initialGlobalOrbitSpeed;
     }
 
     #if UNITY_EDITOR
