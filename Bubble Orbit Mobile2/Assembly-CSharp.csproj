@@ -48,6 +48,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.56f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Assists\GPTChild.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\SpotAmbience.cs" />
     <Compile Include="Assets\Scripts\MainButton.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\UI\Scripts\CutoutMaskUI.cs" />
@@ -55,11 +56,12 @@
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioMultipleSnapshotCollision.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\ClickToPlaySound.cs" />
     <Compile Include="Assets\Scripts\(Master) UICanvas.cs" />
+    <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioPlayOneShotFromList.cs" />
+    <Compile Include="Assets\Scripts\UIGroupAudioMaster.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioPlaySoundWhenCollision.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioPlayOneShotRandomised.cs" />
     <Compile Include="Assets\Scripts\GamePlayTracker.cs" />
     <Compile Include="Assets\MobileARTemplateAssets\Scripts\GoalManager.cs" />
-    <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\UIGroupAudioMaster.cs" />
     <Compile Include="Assets\Scripts\TowerOrbit.cs" />
     <Compile Include="Assets\Scripts\CollisionToBubble.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\AudioPlayRandomSpot.cs" />
@@ -70,7 +72,9 @@
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\Assists\LookAtCamera.cs" />
+    <Compile Include="Assets\Scripts\FlashScreens.cs" />
     <Compile Include="Assets\Scripts\Bubble.cs" />
+    <Compile Include="Assets\Scripts\RectStretchAnim.cs" />
     <Compile Include="Assets\Scripts\Tower.cs" />
     <Compile Include="Assets\Scripts\AFG_Soundscape_Project imports\SurfaceEnum.cs" />
     <Compile Include="Assets\Scripts\Assists\dumbwaystodie.cs" />

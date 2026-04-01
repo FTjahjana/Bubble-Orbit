@@ -14,7 +14,7 @@ public class GamePlayTracker : UIGroup
     [SerializeField] private float timer;
     [SerializeField] private TextMeshProUGUI timeLeftText;
 
-    private Coroutine timerCoroutine; private bool paused = false;
+    private Coroutine timerCoroutine; 
 
     [SerializeField] private Sprite[] hourglassSprites; 
     [SerializeField] private Image hourglassIcon;
@@ -25,8 +25,8 @@ public class GamePlayTracker : UIGroup
     public int CurrentScore { get; private set; }
 
     Animator anim; [SerializeField] Animator H_anim;
-    [SerializeField] AudioSource soundtrack; 
-    [SerializeField] AudioMixerSnapshot gameplaySnapshot;
+    [SerializeField] AudioSource soundtrack, endsoundtrack; 
+    [SerializeField] AudioMixerSnapshot gameplaySnapshot,endSnapshot, mmSnapshot;
     [SerializeField] AudioClip rushAud, endlessAud;
 
     void Awake()
@@ -53,7 +53,6 @@ public class GamePlayTracker : UIGroup
     {
         if (GameManager.Instance.appMode != GameManager.AppMode.Game) return;
         if (timerCoroutine != null) StopCoroutine(timerCoroutine);
-        paused = false;
 
         timerCoroutine = StartCoroutine(TimerRoutine());
     }
@@ -86,7 +85,7 @@ public class GamePlayTracker : UIGroup
 
         while (true)
         {
-            if (!paused){var mode = GameManager.Instance.gameMode;
+            var mode = GameManager.Instance.gameMode;
 
             if (mode == GameManager.GameMode.Rush)
             {
@@ -100,10 +99,6 @@ public class GamePlayTracker : UIGroup
                 yield return new WaitForSeconds(1f);
                 timer++; UpdateUI();
             }
-            else
-            {
-                yield return null; 
-            }}
             
         }
 
@@ -113,7 +108,6 @@ public class GamePlayTracker : UIGroup
             UpdateUI();
             GameManager.Instance.EndGame();
             H_anim.enabled = false;
-            anim.enabled = true; anim.SetTrigger("Exit");
             
         }
 
@@ -135,10 +129,21 @@ public class GamePlayTracker : UIGroup
 
     public void AppModeChanged()
     {
-        if (GameManager.Instance.appMode == GameManager.AppMode.Paused){paused = true;}
-        if (GameManager.Instance.appMode == GameManager.AppMode.Game){ paused = false;
-        //if (GameManager.Instance.gameMode == GameManager.GameMode.Rush) ;
-        //if (GameManager.Instance.gameMode == GameManager.GameMode.Endless) ; 
+        if (GameManager.Instance.appMode == GameManager.AppMode.Exit)
+        {
+            anim.enabled = true; anim.SetTrigger("Exit"); 
+            endsoundtrack.Play(); StartCoroutine(WaitForSoundtrackEnd());
+            endSnapshot.TransitionTo(1.0f);
+            
         }
     }
+
+    public void H_AnimExit(){ H_anim.enabled = true; H_anim.SetTrigger("Exit");}
+
+    IEnumerator WaitForSoundtrackEnd()
+    {
+        yield return new WaitForSeconds(endsoundtrack.clip.length - .5f);
+        mmSnapshot.TransitionTo(1.0f);
+    }
+
 }

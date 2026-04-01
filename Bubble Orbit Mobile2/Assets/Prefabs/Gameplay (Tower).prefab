@@ -150,6 +150,7 @@ MonoBehaviour:
   globalOrbitSpeed: 45
   verticalAngleLimits: {x: -45, y: 45}
   initialDistfromPlayer: 2
+  bubbleSpawner: {fileID: 1896909926244430231}
 --- !u!95 &7867314828999343203
 Animator:
   serializedVersion: 7

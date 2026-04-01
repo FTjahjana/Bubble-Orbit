@@ -25,6 +25,8 @@ public class TowerOrbit : MonoBehaviour
     private float distFromPlayer;
     [SerializeField] float initialDistfromPlayer;
 
+    [SerializeField]BubbleSpawner bubbleSpawner;
+
     void OnEnable()
     {
         if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged += AppModeChanged;
@@ -82,7 +84,7 @@ public class TowerOrbit : MonoBehaviour
         if (GameManager.Instance.appMode == GameManager.AppMode.Exit)
         {   
             anim.enabled = true;
-            anim.SetTrigger("Exit");
+            anim.SetTrigger("Exit"); bubbleSpawner.PopAll();
         }
     }
 

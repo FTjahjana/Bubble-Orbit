@@ -21,9 +21,9 @@ MonoBehaviour:
       m_GuidLow: 5243823507333208513
       m_GuidHigh: 886749133793194917
     m_SerializedTextureGuid:
-      m_GuidLow: 13836317785049813059
-      m_GuidHigh: 16827110576039718041
+      m_GuidLow: 1131614893732341077
+      m_GuidHigh: 16928210319013165481
     m_Size: {x: 0, y: 0}
     m_SpecifySize: 0
-    m_Name: 'placeholder-marker '
+    m_Name: marker
     m_Texture: {fileID: 0}

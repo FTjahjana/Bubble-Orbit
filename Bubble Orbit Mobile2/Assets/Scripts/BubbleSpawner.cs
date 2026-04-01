@@ -35,8 +35,7 @@ public class BubbleSpawner : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.appMode != GameManager.AppMode.Game&&
-        GameManager.Instance.appMode != GameManager.AppMode.Paused) return;
+        if (GameManager.Instance.appMode != GameManager.AppMode.Game) return;
         
         bubbles.RemoveAll(b => b == null);
 
@@ -70,6 +69,13 @@ public class BubbleSpawner : MonoBehaviour
         Vector3 bubPos = rot * Vector3.forward * dist;
 
         rb.AddForce(bubPos.normalized * launchForce, ForceMode.Impulse);
+    }
+
+    public void PopAll()
+    {Debug.Log($"<color=red>{gameObject.name} Popping All!</color>");
+        foreach(GameObject bubble in bubbles){
+            
+            bubble.GetComponent<Bubble>().Pop();}
     }
 
 }

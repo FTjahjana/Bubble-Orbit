@@ -70,7 +70,10 @@ public class Bubble : MonoBehaviour
         anim.SetTrigger(trig);
     }
 
-
+    public void Pop()
+    {
+        popBubble.Play(); anim.SetTrigger("Pop");
+    }
 
     
 }

@@ -9,31 +9,33 @@ public class MainButton : UIGroup
     Button btn; Animator anim; 
     public Shooter shooter;
     UIGroupAudioMaster audioMas;
-    [SerializeField] AudioClip camshot, gameShot, shutDown;
+    [SerializeField] AudioClip camshot, gameShot, shutDown, crash;
+    GameManager gm;
 
     void Start()
     {
-        btn = this.GetComponent<Button>();
+        btn = GetComponent<Button>();
         btn.onClick.AddListener(ButtonClicked);
+        gm = GameManager.Instance;
 
-        anim = this.GetComponent<Animator>();
-        audioMas = this.GetComponent<UIGroupAudioMaster>();
-        GameManager.Instance.OnAppModeChanged += AppModeChanged;
+        anim = GetComponent<Animator>();
+        audioMas = GetComponent<UIGroupAudioMaster>();
+        gm.OnAppModeChanged += AppModeChanged;
     }
 
     void OnEnable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged += AppModeChanged;
+        if (gm != null) gm.OnAppModeChanged += AppModeChanged;
     }
 
     void OnDisable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged -= AppModeChanged;
+        if (gm != null) gm.OnAppModeChanged -= AppModeChanged;
     }
 
     void AppModeChanged()
     {
-        switch (GameManager.Instance.appMode)
+        switch (gm.appMode)
         {
             case GameManager.AppMode.MainMenu:
                 anim.SetTrigger("Start");
@@ -44,7 +46,7 @@ public class MainButton : UIGroup
                 break;
 
             case GameManager.AppMode.Exit:
-                anim.SetTrigger("Exit");
+                anim.SetTrigger("Exit"); audioMas.PlayClip(crash);
                 break;
         }
     }
@@ -52,9 +54,10 @@ public class MainButton : UIGroup
     public void ButtonClicked()
     {
         //Debug.Log("Main Button clicked");
-        switch (GameManager.Instance.appMode)
+        switch (gm.appMode)
         {
             case GameManager.AppMode.MainMenu:
+                if (gm.firstTime){msUiRef.d["Flash Screens"].anim.SetTrigger("W"); return;}
                 msUiRef.d["Flash Screens"].anim.SetTrigger("F");
                 audioMas.PlayClip(camshot);
                 audioMas.GoToSnapshot(0);
@@ -65,8 +68,55 @@ public class MainButton : UIGroup
                 break;
 
             case GameManager.AppMode.Exit:
-                audioMas.PlayClip(shutDown);
+                
                 break;
         }
+    }
+
+    public void ButtonClicked(string side)
+    {
+        if (side == "left")
+        {switch (gm.appMode)
+        {
+            case GameManager.AppMode.MainMenu:
+                
+                break;
+
+            case GameManager.AppMode.Game:
+                
+                break;
+
+            case GameManager.AppMode.Exit:
+                StartCoroutine(WaitForAudio(shutDown));
+
+                break;
+        }}
+        else if (side == "right")
+        {switch (gm.appMode)
+        {
+            case GameManager.AppMode.MainMenu:
+                
+                break;
+
+            case GameManager.AppMode.Game:
+                
+                break;
+
+            case GameManager.AppMode.Exit:
+                
+                break;
+        }}
+        else {Debug.LogWarning("ButtonClicked(side) used wrongly");}
+    }
+
+    IEnumerator WaitForAudio(AudioClip clip)
+    {
+        audioMas.PlayClip(clip);
+        yield return new WaitForSeconds(audioMas.mainAudioSource.clip.length);
+        if (clip == shutDown)OnAudioEnd("quit");
+    }
+    void OnAudioEnd(string option)
+    {
+        if (option =="quit") gm.QuitApp();
     }
 }

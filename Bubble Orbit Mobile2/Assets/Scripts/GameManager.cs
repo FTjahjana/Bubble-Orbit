@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public event System.Action OnAppModeChanged;
 
     public enum AppMode
-    { MainMenu, Game, Exit, Paused, Other }
+    { MainMenu, Game, Exit, Other }
     public AppMode appMode;
 
     public GamePlayTracker gamePlayTracker;
@@ -55,6 +55,15 @@ public class GameManager : MonoBehaviour
     {
         appMode = AppMode.Exit; OnAppModeChanged?.Invoke();
         gamePlayTracker.StopTimer(); Debug.Log("Game ended!");
+    }
+
+    public void QuitApp()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
     }
 
     public void TowerSpawned(){OnTowerSpawned?.Invoke();}

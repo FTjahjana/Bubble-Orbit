@@ -73,10 +73,6 @@ public class MainMenu : UIGroup
         }
     }
 
-    public void Resume()
-    { 
-    }
-
     public void Options()
     {
         Debug.Log("Options Placeholder");
@@ -97,5 +93,6 @@ public class MainMenu : UIGroup
     {
         waveAnim.enabled = !waveAnim.isActiveAndEnabled;
     }
+    
 
 }
