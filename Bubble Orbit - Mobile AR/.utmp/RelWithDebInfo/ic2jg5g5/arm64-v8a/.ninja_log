@@ -1,0 +1,10 @@
+# ninja log v5
+28	2816	7961554652864658	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	149c998d56db3b8f
+38	2837	7961554652890589	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	f751b2c89dc09546
+63	2843	7961554653176672	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	e11a8ecae1f8b4a0
+9	2850	7961554653165853	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	fc68697f741c06a4
+18	2894	7961554653679638	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	f962e91b18b75966
+77	2980	7961554654543569	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	549a754dcf454f63
+51	3031	7961554655061656	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	e62c655731637c26
+0	3104	7961554655764616	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	1d2658863c18dff4
+3104	3326	7961554658026056	C:/Users/F.Tjahjana1/Documents/GitHub/Bubble-Orbit/Bubble Orbit Mobile2/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/ic2jg5g5/obj/arm64-v8a/libgame.so	6229b299ca834747
