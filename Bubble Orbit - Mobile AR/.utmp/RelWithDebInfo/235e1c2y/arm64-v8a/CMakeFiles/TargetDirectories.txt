@@ -1,0 +1,5 @@
+C:/Users/franc/OneDrive/Uni Work/Yr2 (2026)/Bubble-Orbit/Bubble Orbit - Mobile AR/.utmp/RelWithDebInfo/235e1c2y/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/franc/OneDrive/Uni Work/Yr2 (2026)/Bubble-Orbit/Bubble Orbit - Mobile AR/.utmp/RelWithDebInfo/235e1c2y/arm64-v8a/CMakeFiles/rebuild_cache.dir
+C:/Users/franc/OneDrive/Uni Work/Yr2 (2026)/Bubble-Orbit/Bubble Orbit - Mobile AR/.utmp/RelWithDebInfo/235e1c2y/arm64-v8a/GameActivity/CMakeFiles/game.dir
+C:/Users/franc/OneDrive/Uni Work/Yr2 (2026)/Bubble-Orbit/Bubble Orbit - Mobile AR/.utmp/RelWithDebInfo/235e1c2y/arm64-v8a/GameActivity/CMakeFiles/edit_cache.dir
+C:/Users/franc/OneDrive/Uni Work/Yr2 (2026)/Bubble-Orbit/Bubble Orbit - Mobile AR/.utmp/RelWithDebInfo/235e1c2y/arm64-v8a/GameActivity/CMakeFiles/rebuild_cache.dir

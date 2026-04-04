@@ -71,14 +71,14 @@ public class TowerOrbit : MonoBehaviour
         if (GameManager.Instance.appMode == GameManager.AppMode.Game)
         {
             anim.enabled = false;
-            transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
-            transform.position = player.transform.position + Camera.main.transform.forward * distFromPlayer;
         }
 
         if (GameManager.Instance.appMode == GameManager.AppMode.MainMenu)
         {
-            anim.enabled = false;
-            transform.position = Camera.main.transform.position + Camera.main.transform.forward * initialDistfromPlayer;
+            anim.enabled = false; 
+            globalAxis.position = player.transform.position; 
+            globalAxis.rotation = Quaternion.identity;
+            ResetTransform();
         }
 
         if (GameManager.Instance.appMode == GameManager.AppMode.Exit)
@@ -99,6 +99,12 @@ public class TowerOrbit : MonoBehaviour
     {
         if (!reset) globalOrbitSpeed = initialGlobalOrbitSpeed*newSpeedMultiplier;
         else globalOrbitSpeed = initialGlobalOrbitSpeed;
+    }
+
+    void ResetTransform()
+    {
+        transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+        transform.position = player.transform.position + Camera.main.transform.forward * initialDistfromPlayer;
     }
 
     #if UNITY_EDITOR

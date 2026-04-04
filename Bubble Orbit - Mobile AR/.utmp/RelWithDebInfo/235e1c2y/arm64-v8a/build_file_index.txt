@@ -1,0 +1,2 @@
+C:\Users\franc\OneDrive\Uni Work\Yr2 (2026)\Bubble-Orbit\Bubble Orbit - Mobile AR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Users\franc\OneDrive\Uni Work\Yr2 (2026)\Bubble-Orbit\Bubble Orbit - Mobile AR\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\GameActivity\CMakeLists.txt

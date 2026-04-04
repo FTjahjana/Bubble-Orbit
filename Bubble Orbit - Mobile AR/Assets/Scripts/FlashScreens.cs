@@ -26,6 +26,8 @@ public class FlashScreens : UIGroup
         
     }
 
+    public void PlayW(){anim.SetTrigger("W");}
+
     public void W_Back()
     {
         audioMas.PlayChild(0);
@@ -44,5 +46,11 @@ public class FlashScreens : UIGroup
     public void QuitApp()
     {
         anim.SetTrigger("Q");
+    }
+
+    public void PlayTut()
+    {
+        gm.tut.SetIndex(3);
+        gm.tut.PlayNext();
     }
 }

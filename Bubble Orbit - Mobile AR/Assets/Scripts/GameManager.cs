@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject Player;
     public Tower tower;
-    public FlashScreens flashScreens;
 
     public event System.Action OnTowerSpawned;
     public event System.Action OnAppModeChanged;
@@ -18,8 +17,6 @@ public class GameManager : MonoBehaviour
     { MainMenu, Game, Exit, Other }
     public AppMode appMode;
 
-    public GamePlayTracker gamePlayTracker;
-
     public enum GameMode
     { Rush, Endless, N}
     public GameMode gameMode;
@@ -27,7 +24,14 @@ public class GameManager : MonoBehaviour
     { if (gamemodename == "Rush"){gameMode = GameMode.Rush;}
     if (gamemodename == "Endless"){gameMode = GameMode.Endless;}}
 
-    public bool firstTime = true;
+    public bool firstTime = true, tutOn;
+
+    [Header("UIGroup refs")]
+    public GamePlayTracker gamePlayTracker;
+    public MainMenu mainMenu;
+    public FlashScreens flashScreens;
+
+    public Tutorial tut;
 
     void Awake()
     {
@@ -44,6 +48,21 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("App Started");
+    }
+
+    public void MainMenu()
+    {
+        appMode = AppMode.MainMenu; OnAppModeChanged?.Invoke();
+        Debug.Log("<color=yellow>gm: MainMenu()</color>");
+        mainMenu.gameObject.SetActive(true); mainMenu.StartApp();
+
+        gamePlayTracker.gameObject.SetActive(false);
+        
+    }
+
+    public void EnableTut()
+    {
+        tut.gameObject.SetActive(tutOn);
     }
 
     public void StartGame()

@@ -10,7 +10,9 @@ public class MainButton : UIGroup
     public Shooter shooter;
     UIGroupAudioMaster audioMas;
     [SerializeField] AudioClip camshot, gameShot, shutDown, crash;
-    GameManager gm;
+    GameManager gm; FlashScreens flashScreens;
+
+    public bool btnMM;
 
     void Start()
     {
@@ -21,6 +23,10 @@ public class MainButton : UIGroup
         anim = GetComponent<Animator>();
         audioMas = GetComponent<UIGroupAudioMaster>();
         gm.OnAppModeChanged += AppModeChanged;
+
+        flashScreens = msUiRef.d["Flash Screens"].obj.GetComponent<FlashScreens>();
+
+        btnMM = true;
     }
 
     void OnEnable()
@@ -57,10 +63,13 @@ public class MainButton : UIGroup
         switch (gm.appMode)
         {
             case GameManager.AppMode.MainMenu:
-                if (gm.firstTime){msUiRef.d["Flash Screens"].anim.SetTrigger("W"); return;}
-                msUiRef.d["Flash Screens"].anim.SetTrigger("F");
+
+                if (!btnMM) return; 
                 audioMas.PlayClip(camshot);
-                audioMas.GoToSnapshot(0);
+                gm.tut.EndCurrentRect();
+                if (gm.firstTime){flashScreens.PlayW(); return;}
+                
+                flashScreens.W_Continue();
                 break;
 
             case GameManager.AppMode.Game:
@@ -68,7 +77,8 @@ public class MainButton : UIGroup
                 break;
 
             case GameManager.AppMode.Exit:
-                
+                btnMM = false; anim.SetTrigger("Reset");
+                gm.MainMenu(); 
                 break;
         }
     }
@@ -103,7 +113,7 @@ public class MainButton : UIGroup
                 break;
 
             case GameManager.AppMode.Exit:
-                
+                gm.StartGame();
                 break;
         }}
         else {Debug.LogWarning("ButtonClicked(side) used wrongly");}

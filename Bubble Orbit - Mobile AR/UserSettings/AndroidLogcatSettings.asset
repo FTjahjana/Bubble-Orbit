@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "ZY22J475MC",
         "name": "com.unity.template.ar_mobile",
-        "processId": 20377,
+        "processId": 4717,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -84,6 +84,54 @@
             "deviceId": "ZY22J475MC",
             "name": "com.unity.template.ar_mobile",
             "processId": 20377,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 21520,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 24073,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 26033,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 26738,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 31438,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 32148,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 3404,
+            "exited": false
+        },
+        {
+            "deviceId": "ZY22J475MC",
+            "name": "com.unity.template.ar_mobile",
+            "processId": 4717,
             "exited": false
         }
     ],

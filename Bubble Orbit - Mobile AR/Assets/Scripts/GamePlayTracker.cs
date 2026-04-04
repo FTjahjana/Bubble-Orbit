@@ -29,9 +29,13 @@ public class GamePlayTracker : UIGroup
     [SerializeField] AudioMixerSnapshot gameplaySnapshot,endSnapshot, mmSnapshot;
     [SerializeField] AudioClip rushAud, endlessAud;
 
+    GameManager gm;
+
     void Awake()
     {
         anim = GetComponent<Animator>(); 
+        gameObject.SetActive(false);
+        if (GameManager.Instance != null) gm = GameManager.Instance;
     }
 
     void Start()
@@ -41,17 +45,17 @@ public class GamePlayTracker : UIGroup
 
     void OnEnable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged += AppModeChanged;
+        if (gm != null) gm.OnAppModeChanged += AppModeChanged;
     }
 
     void OnDisable()
     {
-        if (GameManager.Instance != null) GameManager.Instance.OnAppModeChanged -= AppModeChanged;
+        if (gm != null) gm.OnAppModeChanged -= AppModeChanged;
     }
 
     public void StartTimer()
     {
-        if (GameManager.Instance.appMode != GameManager.AppMode.Game) return;
+        if (gm.appMode != GameManager.AppMode.Game) return;
         if (timerCoroutine != null) StopCoroutine(timerCoroutine);
 
         timerCoroutine = StartCoroutine(TimerRoutine());
@@ -65,27 +69,42 @@ public class GamePlayTracker : UIGroup
 
     private IEnumerator TimerRoutine()
     {   
-        
+        Debug.Log("timerRoutine started");
+
+        anim.enabled = true; 
+        anim.ResetTrigger("Exit"); 
+        if (!gm.firstTime){
+            anim.SetBool("replaying", true);
+            H_anim.SetBool("replaying", true);}
+
+        anim.Play("-Exit", 0, 0f); H_anim.Play("Hourglass - 0", 0, 0f);
+        anim.Update(0f); 
+
         gameplaySnapshot.TransitionTo(2.0f);
         yield return new WaitForSeconds(.1f);
 
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Rush)
+        if (gm.gameMode == GameManager.GameMode.Rush)
         {
-            timer = rushDuration; anim.enabled = true; 
+            timer = rushDuration;
             soundtrack.clip = rushAud; H_anim.SetTrigger("HourglassRush");
+            gm.tut.SkipIndex(10);
         }
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Endless)
+        if (gm.gameMode == GameManager.GameMode.Endless)
         {
-            timer = 0; anim.enabled = true;
+            timer = 0; 
             soundtrack.clip = endlessAud; H_anim.SetTrigger("HourglassLoop");
+            gm.tut.SkipIndex(9);
         }
         soundtrack.Play();
         CurrentScore = 0;
         UpdateUI();
 
+        gm.tut.SetIndex(6); gm.tut.PlayNext();
+        yield return new WaitWhile(() => gm.tut.gameObject.activeSelf);
+
         while (true)
         {
-            var mode = GameManager.Instance.gameMode;
+            var mode = gm.gameMode;
 
             if (mode == GameManager.GameMode.Rush)
             {
@@ -102,15 +121,15 @@ public class GamePlayTracker : UIGroup
             
         }
 
-        if (GameManager.Instance.gameMode == GameManager.GameMode.Rush)
+        if (gm.gameMode == GameManager.GameMode.Rush)
         {
             timer = 0f;
             UpdateUI();
-            GameManager.Instance.EndGame();
+            gm.EndGame();
             H_anim.enabled = false;
             
         }
-
+      
         timerCoroutine = null;
     }
 
@@ -129,7 +148,13 @@ public class GamePlayTracker : UIGroup
 
     public void AppModeChanged()
     {
-        if (GameManager.Instance.appMode == GameManager.AppMode.Exit)
+         if (gm.appMode == GameManager.AppMode.MainMenu)
+        {gameObject.SetActive(false);}
+
+         if (gm.appMode == GameManager.AppMode.MainMenu)
+        {gameObject.SetActive(true);}
+
+        if (gm.appMode == GameManager.AppMode.Exit)
         {
             anim.enabled = true; anim.SetTrigger("Exit"); 
             endsoundtrack.Play(); StartCoroutine(WaitForSoundtrackEnd());
@@ -138,13 +163,24 @@ public class GamePlayTracker : UIGroup
         }
     }
 
-    public void H_AnimExit(){ H_anim.enabled = true; H_anim.SetTrigger("Exit");}
+    public void H_AnimExit(){ H_anim.enabled = true; 
+        anim.SetBool("replaying", false);
+        H_anim.SetBool("replaying", false);
+    H_anim.SetTrigger("Exit");}
 
     IEnumerator WaitForSoundtrackEnd()
     {
         yield return new WaitForSeconds(endsoundtrack.clip.length - .5f);
+        msUiRef.d["Main Menu"].obj.SetActive(true);
         mainsoundtrack.Play();
         mmSnapshot.TransitionTo(1.0f);
+    }
+
+    public void PlayTut()
+    {
+        gm.tut.EndCurrentRect();
+        gm.tut.SetIndex(13);
+        gm.tut.PlayNext();
     }
 
 }
