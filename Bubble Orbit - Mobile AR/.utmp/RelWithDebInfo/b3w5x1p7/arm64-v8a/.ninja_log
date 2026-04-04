@@ -1,0 +1,19 @@
+# ninja log v5
+21	2407	7970024626817584	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	490134c473786794
+30	2422	7970024626863175	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	524e543bb968d153
+2680	2894	7970024631710272	C:/Users/F.Tjahjana1/Documents/GitHub/Bubble-Orbit/Bubble Orbit - Mobile AR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/b3w5x1p7/obj/arm64-v8a/libgame.so	fa9d66876a028a41
+44	2588	7970024628656009	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	814cb5fe2e5c20a6
+14	2427	7970024626972928	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	cfe06f56727b7ac5
+0	2464	7970024627398969	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7bbedaa4fc2da100
+54	2435	7970024627112525	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	6e320c7831e30262
+37	2601	7970024628782390	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5a5d03e16e2be8f8
+7	2680	7970024629533599	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1f2678f84d895
+16	2172	7970041086804293	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	cfe06f56727b7ac5
+50	2209	7970041087183227	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	524e543bb968d153
+24	2221	7970041087318678	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	490134c473786794
+10	2249	7970041087596609	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	7bbedaa4fc2da100
+40	2265	7970041087773964	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	6e320c7831e30262
+59	2366	7970041088794145	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	814cb5fe2e5c20a6
+31	2388	7970041088999688	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	5a5d03e16e2be8f8
+4	2435	7970041089418521	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	3d1f2678f84d895
+2436	2567	7970041090805644	C:/Users/F.Tjahjana1/Documents/GitHub/Bubble-Orbit/Bubble Orbit - Mobile AR/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/b3w5x1p7/obj/arm64-v8a/libgame.so	fa9d66876a028a41
